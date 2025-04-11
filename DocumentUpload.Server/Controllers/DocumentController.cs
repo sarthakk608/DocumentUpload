@@ -12,7 +12,6 @@ namespace DocumentUpload.Server.Controllers
 
     public class DocumentController : ControllerBase
     {
-        //private readonly Documents _document;
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _env;
 
@@ -21,8 +20,6 @@ namespace DocumentUpload.Server.Controllers
         {
             _context = context;
             _env = env;
-
-
 
         }
 
@@ -99,8 +96,8 @@ namespace DocumentUpload.Server.Controllers
             return Ok(documents);
         }
 
+        [HttpGet("view/{id}")]
 
-        [HttpGet("{id}/view")]
         public async Task<IActionResult> ViewDocument(int id)
         {
             var document = await _context.Document.FindAsync(id);
