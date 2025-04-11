@@ -21,11 +21,11 @@ namespace DocumentUpload.Server.Controllers
         {
             _context = context;
             _env = env;
-            //_document = document;
 
 
 
         }
+
 
         [HttpPost("upload")]
         public async Task<IActionResult> UploadDocument([FromForm] DocumentModel model)
@@ -33,24 +33,15 @@ namespace DocumentUpload.Server.Controllers
             if (model.File == null || model.File.Length == 0)
                 return BadRequest("File is required.");
 
-            string uploadsFolder = Path.Combine(_env.ContentRootPath, "UploadedFiles");
-            if (!Directory.Exists(uploadsFolder))
-                Directory.CreateDirectory(uploadsFolder);
-
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.File.FileName);
-            var filePath = Path.Combine(uploadsFolder, fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await model.File.CopyToAsync(stream);
-            }
+            using var memoryStream = new MemoryStream();
+            await model.File.CopyToAsync(memoryStream);
 
             var document = new Documents
             {
                 FileName = model.File.FileName,
                 FileType = model.Type,
                 UploadDate = model.Date,
-                FilePath = filePath
+                FileData = memoryStream.ToArray()
             };
 
             _context.Document.Add(document);
@@ -58,6 +49,39 @@ namespace DocumentUpload.Server.Controllers
 
             return Ok(document);
         }
+
+
+        //[HttpPost("upload")]
+        //public async Task<IActionResult> UploadDocument([FromForm] DocumentModel model)
+        //{
+        //    if (model.File == null || model.File.Length == 0)
+        //        return BadRequest("File is required.");
+
+        //    string uploadsFolder = Path.Combine(_env.ContentRootPath, "UploadedFiles");
+        //    if (!Directory.Exists(uploadsFolder))
+        //        Directory.CreateDirectory(uploadsFolder);
+
+        //    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.File.FileName);
+        //    var filePath = Path.Combine(uploadsFolder, fileName);
+
+        //    using (var stream = new FileStream(filePath, FileMode.Create))
+        //    {
+        //        await model.File.CopyToAsync(stream);
+        //    }
+
+        //    var document = new Documents
+        //    {
+        //        FileName = model.File.FileName,
+        //        FileType = model.Type,
+        //        UploadDate = model.Date,
+        //        FilePath = filePath
+        //    };
+
+        //    _context.Document.Add(document);
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok(document);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetDocuments()
@@ -75,6 +99,7 @@ namespace DocumentUpload.Server.Controllers
             return Ok(documents);
         }
 
+
         [HttpGet("{id}/view")]
         public async Task<IActionResult> ViewDocument(int id)
         {
@@ -82,15 +107,26 @@ namespace DocumentUpload.Server.Controllers
             if (document == null)
                 return NotFound("Document not found.");
 
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(document.FilePath, FileMode.Open))
-            {
-                await stream.CopyToAsync(memory);
-            }
-            memory.Position = 0;
-
-            string contentType = "application/octet-stream";
-            return File(memory, contentType, document.FileName);
+            return File(document.FileData, "application/octet-stream", document.FileName);
         }
+
+
+        //[HttpGet("{id}/view")]
+        //public async Task<IActionResult> ViewDocument(int id)
+        //{
+        //    var document = await _context.Document.FindAsync(id);
+        //    if (document == null)
+        //        return NotFound("Document not found.");
+
+        //    var memory = new MemoryStream();
+        //    using (var stream = new FileStream(document.FilePath, FileMode.Open))
+        //    {
+        //        await stream.CopyToAsync(memory);
+        //    }
+        //    memory.Position = 0;
+
+        //    string contentType = "application/octet-stream";
+        //    return File(memory, contentType, document.FileName);
+        //}
     }
 }

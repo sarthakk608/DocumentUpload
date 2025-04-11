@@ -6,8 +6,9 @@
         public string FileName { get; set; }
         public string FileType { get; set; }
         public DateTime UploadDate { get; set; }
-        public string FilePath { get; set; }
+        //public string FilePath { get; set; }
 
+        public byte[] FileData { get; set; }
     }
 
     public class DocumentModel
