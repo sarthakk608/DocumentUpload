@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
+
 
 @Component({
   selector: 'app-root',
@@ -14,9 +9,17 @@ interface WeatherForecast {
   standalone: false,
   styleUrl: './app.component.css'
 })
+
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+      throw new Error('Method not implemented.');
+  }
+
+
 export class AppComponent {
 
   constructor(private http: HttpClient) {}
+
 
 
 

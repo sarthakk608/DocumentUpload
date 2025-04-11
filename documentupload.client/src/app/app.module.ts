@@ -6,9 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListDocumentsComponent } from './components/list-documents/list-documents.component';
 import { ViewDocumentComponent } from './components/view-document/view-document.component';
+
+import { DashBoardComponent } from './components/dash-board/dash-board.component';
+
 import { DataTablesModule } from 'angular-datatables';
 import { UploadDocumentComponent } from './components/upload-document/upload-document.component';
 import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import { DatePipe } from '@angular/common';
     AppComponent,
     ListDocumentsComponent,
     ViewDocumentComponent,
+
+    DashBoardComponent
+
     UploadDocumentComponent
+
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, DataTablesModule,
