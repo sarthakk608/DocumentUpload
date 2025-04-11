@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListDocumentsComponent } from './components/list-documents/list-documents.component';
 import { ViewDocumentComponent } from './components/view-document/view-document.component';
+import { DashBoardComponent } from './components/dash-board/dash-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListDocumentsComponent,
-    ViewDocumentComponent
+    ViewDocumentComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
