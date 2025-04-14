@@ -17,8 +17,10 @@ export class DocumentService {
     return this._http.get<IDocument[]>(this.baseApi);
   }
 
-  getDocument(id: string): Observable<IDocument> {
-    return this._http.get<IDocument>(this.baseApi + '/view/' + id);
+  getDocument(id: string): Observable<Blob> {
+    return this._http.get(`${this.baseApi}/view/${id}`, {
+       responseType: 'blob'
+    });
   }
 
   addDocument(addDocumentRequest: IDocument): Observable<IDocument> {
@@ -29,5 +31,9 @@ export class DocumentService {
     );
 
 
+  }
+
+  uploadDocument(formData: FormData): Observable<any> {
+    return this._http.post(`${this.baseApi}/upload`, formData);
   }
 }

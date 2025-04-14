@@ -8,7 +8,7 @@ import { ListDocumentsComponent } from './components/list-documents/list-documen
 import { ViewDocumentComponent } from './components/view-document/view-document.component';
 
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
-
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { DataTablesModule } from 'angular-datatables';
 import { UploadDocumentComponent } from './components/upload-document/upload-document.component';
 import { DatePipe } from '@angular/common';
@@ -21,14 +21,14 @@ import { DatePipe } from '@angular/common';
     ListDocumentsComponent,
     ViewDocumentComponent,
 
-    DashBoardComponent
+    DashBoardComponent,
 
     UploadDocumentComponent
 
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, DataTablesModule,
-    AppRoutingModule
+    AppRoutingModule, NgxDocViewerModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 
 <div class="container mt-5">
   <h1 class="mb-3 textLeft">Documents</h1>
-  <table class="table table-hover table-bordered" *ngIf="documentData.length != 0; else noEmployee">
+  <table  class="table table-hover table-bordered" *ngIf="documentData.length != 0; else noEmployee">
     <thead class="thead">
       <tr>
         <th>ID</th>
@@ -17,7 +17,7 @@
         <td>{{ document.id }}</td>
         <td>{{ document.fileName }}</td>
         <td>{{ document.fileType }}</td>
-        <td>{{ filter_date(document.uploaddate) }}</td>
+        <td>{{ filter_date(document.uploadDate) }}</td>
 
 
         <td>

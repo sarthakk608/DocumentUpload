@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentUpload.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250411082847_Initial")]
-    partial class Initial
+    [Migration("20250414080622_removing filedata[]")]
+    partial class removingfiledata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

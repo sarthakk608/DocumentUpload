@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { ListDocumentsComponent } from './components/list-documents/list-documents.component';
 import { ViewDocumentComponent } from './components/view-document/view-document.component';
+import { UploadDocumentComponent } from './components/upload-document/upload-document.component';
 
 const routes: Routes = [
   {
@@ -15,13 +16,9 @@ const routes: Routes = [
     component:ListDocumentsComponent
   },
   {
-    path: 'view',
-    component:ViewDocumentComponent
-
-import { ViewDocumentComponent } from './components/view-document/view-document.component';
-
-const routes: Routes = [
-
+    path: 'upload',
+    component: UploadDocumentComponent
+  },
   {
     path: 'document/view/:id',
     component: ViewDocumentComponent

@@ -28,8 +28,6 @@
 
     "angular-datatables": "^19.0.0",
     "datatables.net": "^2.2.2",
-    "jest-editor-support": "*",
-
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "toaster": "^0.1.2",

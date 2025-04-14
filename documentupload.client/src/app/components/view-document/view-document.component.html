@@ -1,1 +1,21 @@
-<p>view-document works!</p>
+<!--<p>View DOcument WORKSSSSSSSSSS</p>-->
+<!--Image Preview-->
+<img *ngIf="myImage"  [src]="previewSrc" style="max-width: 100%; height:100%; margin: auto" />
+
+<!-- PDF Preview -->
+<!--<iframe *ngIf="previewType === 'pdf'" [src]="previewSrc" width="100%" height="600px"></iframe>-->
+
+
+<!--<ng-template #notImage>-->
+<!-- Download Option -->
+<!--<div *ngIf="previewType === 'download'">
+  <a [href]="previewSrc" download>Click here to download the file</a>
+</div>
+</ng-template>-->
+
+
+
+<ngx-doc-viewer *ngIf="!myImage"   [url]="previewSrc"
+                [viewer]="previewType"
+                style="width:100%;height:100vh;"></ngx-doc-viewer>
+
